@@ -1,0 +1,45 @@
+<header>
+    <!-- <div class="container"> -->
+    </div>
+    <div class="progress">
+        <div class="percent">
+            <svg>
+                            <circle cx="70" cy="70" r="70"></circle>
+                            <circle cx="70" cy="70" r="70"></circle>
+                    </svg>
+            <div class="number">
+                <h2 id="percent"></h2><span>%</span>
+            </div>
+        </div>
+
+        <!-- </div> -->
+</header>
+
+<!--////////////////////////////////////////////-->
+
+
+<section class="new">
+    <div class="activity">
+        <h2> <i class="fas fa-plus-circle"></i> New activity</h2>
+    </div>
+
+</section>
+<div class="modal-overlay ">
+    <div class="close2">
+        <a><i class="fas fa-times"></i></a>
+    </div>
+    <div class="modal-new">
+        <div class="name">
+            <form action="">
+                <label for="">Name of activity</label>
+                <input id="Input" type="text">
+                <input id="button" type="button" value="Save">
+            </form>
+        </div>
+    </div>
+</div>
+
+<main class="main" id="main">
+    <div class="list" id="list">
+    </div>
+</main>

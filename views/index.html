@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <div class="progress">
+                <div class="percent">
+                    <svg>
+                        <circle cx="70" cy="70" r="70"></circle>
+                        <circle cx="70" cy="70" r="70"></circle>
+                    </svg>
+                    <div class="number">
+                        <h2 id="percent"></h2><span>%</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="bnt-new-theme">
+                <div class="new-activity">
+                    <h2> <i class="fas fa-plus-circle"></i> New activity</h2>
+                </div>
+                <div class="bnt-theme" >
+                    <input type="checkbox" name="" id="theme">
+                    <div id="dark-light">
+
+                        <div id="dark"></div>
+                        <div id="light"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- ////////////////////////////////////// -->
+            <div class="modal-overlay ">
+                <div class="close2">
+                    <a><i class="fas fa-times"></i></a>
+                </div>
+                <div class="modal-new">
+                    <div class="name">
+                        <form action="">
+                            <label for="">Name of activity</label>
+                            <input id="Input" type="text">
+                            <input id="button" type="button" value="Save">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- ///////////////////////////////////// -->
+            <!-- <br> -->
+
+            <div class="list-content">
+                <div class="list-activities" id="main">
+                    <div class="list" id="list">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Feito com Arcanjo Cassiel</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
