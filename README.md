@@ -1,4 +1,4 @@
-# list_actividad
+<h1 align="center"> list_actividad</h1>
 
 #### Created using JavaScript
 ##  🔥 Install
