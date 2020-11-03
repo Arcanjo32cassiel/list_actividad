@@ -1,7 +1,6 @@
 window.addEventListener('load', init);
 
 //////////////// variavéis globais/////////////
-const globallists = [];
 const list = document.getElementById('list');
 const button = document.getElementById('button');
 const check = document.getElementById('check');
@@ -10,6 +9,7 @@ const form = document.querySelector('form');
 const lis = document.querySelectorAll('li')
 const modaloverlay = document.querySelector('.modal-overlay ');
 const ul = document.createElement("ul");
+
 const fototrash = [url = 'bin.svg']
 
 var IsEditing = true;
@@ -40,6 +40,18 @@ function aplicatefocus(object) {
     object.focus();
 }
 
+ // localStorage
+const  actividadlocalStorage= JSON.parse(localStorage
+    .getItem('actividad'))
+var  actividad= localStorage
+    .getItem('actividad')!== null ? actividadlocalStorage : []
+      
+      const  updateLocalStorage =()=>{
+        // localStorage.setItem('actividad', actividad)
+        localStorage.setItem('actividad', JSON.stringify(actividad))
+        
+    }
+
 function capturetypedvalues(obj, object) {
     obj.addEventListener('keyup', event => {
         object.addEventListener('click', e => {
@@ -50,16 +62,21 @@ function capturetypedvalues(obj, object) {
                 if (valuetyped) {
                     if (IsEditing) {
                         //  editar valores
-                        globallists.splice(Posicao, 1, valuetyped);
+                        actividad.splice(Posicao, 1, valuetyped);
                         IsEditing = false;
 
                         Showpercent();
                     } else {
                         //  Inserindo valores
-                        globallists.unshift(valuetyped); //  Inserindo no array globallists
-                        document.title = `(${globallists.length}) list_activit`;
+                        actividad.unshift(valuetyped); //  Inserindo no array actividad
+                        document.title = `(${actividad.length}) list_activit`;
+                        
                     }
+                    
                 }
+                // localStorage
+                updateLocalStorage();
+
                 displayvector(); //vai atualizar a página e exibir vetor com novo valor
 
                 modaloverlay.classList.remove('active-modal'); //remove o modal
@@ -67,29 +84,30 @@ function capturetypedvalues(obj, object) {
         });
     });
 }
-
 function displayvector() {
     //limpando conteudo da ul e input para receber novos valores
     ul.innerHTML = '';
     Input.value = '';
 
     //para cada posição do vetor, executar a função 
-    globallists.map(item => {
-        var lis = document.createElement("li");
-        lis.value = `${100/globallists.length}`;
-        console.log(lis.value)
-        lis.addEventListener('mouseover', function() {
-            lis.style.background = '#ccc';
+    actividad.map(item => {
+        var li = document.createElement("li");
+        li.value = `${100/actividad.length}`;
+        console.log(li.value)
+        li.addEventListener('mouseover', function() {
+            li.style.background = '#ccc';
         })
-        lis.addEventListener('mouseout', function() {
-                lis.style.background = '';
+        li.addEventListener('mouseout', function() {
+                li.style.background = '';
             })
             ////////////////////////////////////////
-        lis.appendChild(inputboxselet());
-        lis.appendChild(span(item));
-        lis.appendChild(trashcan());
-        ul.appendChild(lis);
+        li.appendChild(inputboxselet());
+        li.appendChild(span(item));
+        li.appendChild(trashcan());
+        ul.appendChild(li);
+        
     })
+    
     list.appendChild(ul); //adcionar a ul dentro da nav  list para ser exibida na página
 }
 
@@ -127,8 +145,8 @@ function span(valor) {
 function EditarItem(event) {
     // capturadando valor do elemento clicado
     const valor = event.target.innerHTML;
-    var index = globallists.indexOf(valor); //Indentificando o indice
-    Input.value = globallists[index]
+    var index = actividad.indexOf(valor); //Indentificando o indice
+    Input.value = actividad[index]
 
     aplicatefocus(Input); //Aplicando foco no input
     modaloverlay.classList.add('active-modal');
@@ -143,15 +161,15 @@ ul.addEventListener('click', event => {
 
         // Capturando conteudo do elemento clicado
         var conteudo = event.srcElement.previousSibling.innerHTML;
-        //  Deletando elemento de globallists
-        var index = globallists.indexOf(conteudo); // Identificando índice
-        globallists.splice(index, 1);
+        //  Deletando elemento de actividad
+        var index = actividad.indexOf(conteudo); // Identificando índice
+        actividad.splice(index, 1);
         console.log(index);
-
+        updateLocalStorage();
         li.remove(); // Removendo elemento do página ( a LI )
         ////////////////////////////////////////////////////////////
-        document.title = `(${globallists.length-0}) list_activit  `;
-        if (globallists.length === 0) {
+        document.title = `(${actividad.length-0}) list_activit  `;
+        if (actividad.length === 0) {
             document.title = ` list_activit  `;
         }
         ////////////////////////////////////////////////
@@ -170,7 +188,7 @@ ul.addEventListener('click', event => {
 function Showpercent() {
     const percent = document.querySelector('#percent')
 
-    const percentitem = 100 / globallists.length;
+    const percentitem = 100 / actividad.length;
     const verifiqueddone = document.getElementsByClassName('done').length;
 
     lis.value = `${percentitem*verifiqueddone}`;
@@ -184,11 +202,6 @@ function Showpercent() {
 // https://desenvolvimentoparaweb.com/javascript/como-loading-de-javascript-funciona-domcontentloaded-e-onload/#content
 
 
-// /local storage
-// https://www.youtube.com/watch?v=FdR1Lla4A5M
-// https://www.youtube.com/watch?v=De5np8phQxo
-// https://www.youtube.com/watch?v=6deCUoDuMQc&t=431s
-// https://www.youtube.com/watch?v=hNTozXl-qJA
 
 //////////////////////MODAL NEW ACTIVITY////////////////////////////////////////////////////////////
 //Quando clicar new activity abrirá um modal para adicionar a nova atividade

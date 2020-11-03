@@ -184,6 +184,7 @@ svg circle:nth-child(2) {
     /* z-index: -1; */
     width: 6.5rem;
     height: 2.4rem;
+    position: absolute;
 }
 #dark{
 background-image: url('./images/moom.svg');
@@ -218,7 +219,7 @@ background-image: url('./images/moom.svg');
      background-color:#000; 
 } */
 .content .bnt-new-theme .bnt-theme {
-    margin-top:2rem;
+    margin: -2rem 5rem;
 }
 
 .list-content {
@@ -416,18 +417,5 @@ footer {
         display: flex;
         justify-content: center;
     }
-    /* .list-content .list-activities { */
-    /* width: 100%;
-        display: flex;
-        justify-content: center;
-        width: 700px;
-        position: relative;
-        overflow: scroll;
-        height: 500px; */
-    /* } */
-    /*    
-    .list-content .list-activities .list {
-         z-index: -1; 
-}
-*/
+
 }
