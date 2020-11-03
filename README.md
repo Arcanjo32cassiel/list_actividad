@@ -5,7 +5,9 @@
 
 ## Execute:
 
-shell#
+```shell
+
+
 #Cloning repo
 
 $ git clone <https://github.com/Arcanjo32cassiel/list_actividad.git>
@@ -15,7 +17,7 @@ $ git clone <https://github.com/Arcanjo32cassiel/list_actividad.git>
   
 #Run project
 
-$ npm start
-
+  $ npm start
+```
 ## Image
 <div align="center"></div>
