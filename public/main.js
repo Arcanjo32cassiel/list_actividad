@@ -1,6 +1,7 @@
 window.addEventListener('load', init);
 
 //////////////// variavéis globais/////////////
+// const actividad= []
 const list = document.getElementById('list');
 const button = document.getElementById('button');
 const check = document.getElementById('check');
@@ -9,7 +10,7 @@ const form = document.querySelector('form');
 const lis = document.querySelectorAll('li')
 const modaloverlay = document.querySelector('.modal-overlay ');
 const ul = document.createElement("ul");
-
+// var newactividad =[]
 const fototrash = [url = 'bin.svg']
 
 var IsEditing = true;
@@ -23,9 +24,6 @@ function init() {
     displayvector();
 
     document.title = ` list_activit`;
-
-    // document.body.style.background = '#2f3336'
-    // document.body.style.color = '#fafbfc'
 }
 
 // PARA PREVENIR COMPORTAMENTO PADRÃO DO FORMULÁRIO///////
@@ -40,17 +38,15 @@ function aplicatefocus(object) {
     object.focus();
 }
 
- // localStorage
-const  actividadlocalStorage= JSON.parse(localStorage
-    .getItem('actividad'))
-var  actividad= localStorage
-    .getItem('actividad')!== null ? actividadlocalStorage : []
-      
-      const  updateLocalStorage =()=>{
-        // localStorage.setItem('actividad', actividad)
-        localStorage.setItem('actividad', JSON.stringify(actividad))
-        
-    }
+// localStorage
+const actividadlocalStorage = localStorage.getItem("actividad")
+
+var actividad = actividadlocalStorage != null ? JSON.parse(actividadlocalStorage) : []
+
+const updateLocalStorage = () => {
+    localStorage.setItem("actividad", JSON.stringify(actividad))
+
+}
 
 function capturetypedvalues(obj, object) {
     obj.addEventListener('keyup', event => {
@@ -63,16 +59,17 @@ function capturetypedvalues(obj, object) {
                     if (IsEditing) {
                         //  editar valores
                         actividad.splice(Posicao, 1, valuetyped);
+                        console.log(Posicao)
                         IsEditing = false;
 
                         Showpercent();
                     } else {
                         //  Inserindo valores
-                        actividad.unshift(valuetyped); //  Inserindo no array actividad
+                        //  newactividad= actividad.slice();
+                        // newactividad.unshift({name:valuetyped, checked:""}); //  Inserindo no array actividad
+                        actividad.unshift({ name: valuetyped, checked: "" }); //  Inserindo no array actividad
                         document.title = `(${actividad.length}) list_activit`;
-                        
                     }
-                    
                 }
                 // localStorage
                 updateLocalStorage();
@@ -84,6 +81,7 @@ function capturetypedvalues(obj, object) {
         });
     });
 }
+
 function displayvector() {
     //limpando conteudo da ul e input para receber novos valores
     ul.innerHTML = '';
@@ -105,9 +103,9 @@ function displayvector() {
         li.appendChild(span(item));
         li.appendChild(trashcan());
         ul.appendChild(li);
-        
+
     })
-    
+
     list.appendChild(ul); //adcionar a ul dentro da nav  list para ser exibida na página
 }
 
@@ -117,6 +115,7 @@ function inputboxselet() {
     inputcheckbox.style.width = '18px';
     inputcheckbox.style.height = '20px';
     inputcheckbox.id = "check";
+
 
     return inputcheckbox;
 }
@@ -152,16 +151,19 @@ function EditarItem(event) {
     modaloverlay.classList.add('active-modal');
     IsEditing = true;
     Posicao = index;
+    console.log(Posicao)
 }
 
 ul.addEventListener('click', event => {
     var li = event.target.parentElement;
+
     // Realizar evento apenas quando o usário clicar no botão
     if (event.target.localName === 'img') {
 
         // Capturando conteudo do elemento clicado
         var conteudo = event.srcElement.previousSibling.innerHTML;
-        //  Deletando elemento de actividad
+        console.log(conteudo)
+            //  Deletando elemento de actividad
         var index = actividad.indexOf(conteudo); // Identificando índice
         actividad.splice(index, 1);
         console.log(index);
@@ -178,10 +180,18 @@ ul.addEventListener('click', event => {
     }
 
     if (event.target.id === 'check') {
+
         li.classList.toggle("done");
-        
+        var checks = event.target.parentNode
+        console.log(checks, checks.className)
+        if (checks.className === 'done') {
+            console.log('checked:', `${checks.className}`)
+        } else {
+            console.log('"checked:"', '""')
+        }
+
     }
-    Showpercent();
+    Showpercent(event);
 });
 
 // ///////////////Mostrar a porcentagem correspondente às atividades feitas////////// //
@@ -227,6 +237,20 @@ close2.addEventListener('click', function() {
 
 // DARK e LIGTH
 const theme = document.getElementById('theme');
-theme.addEventListener('click', ev =>{
+let themo = JSON.parse(localStorage.getItem("themo"))
+theme.addEventListener('click', ev => {
     document.body.classList.toggle('dark')
+    const clasbody = document.body.className;
+    console.log(clasbody)
+    if (clasbody === 'dark') {
+        themo.push(clasbody)
+    } else {
+        themo.push([])
+    }
+    localStorage.setItem("themo", JSON.stringify(themo))
+
 })
+
+
+// salvar image do header 
+// https://www.youtube.com/watch?v=De5np8phQxo&t=1251s
