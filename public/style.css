@@ -152,7 +152,8 @@ svg circle:nth-child(2) {
 .content .bnt-new-theme .new-activity {
     cursor: pointer;
 }
-#theme{
+
+#theme {
     z-index: 1000;
     position: absolute;
     width: 6.5rem;
@@ -163,21 +164,24 @@ svg circle:nth-child(2) {
     border-radius: 2rem;
     box-shadow: inset 0 0 5px rgba(85, 85, 85, 0.2);
     transition: .2s;
-    border: solid  #000 1px;
+    border: solid #000 1px;
 }
-#theme::before{
-    content:' ';
+
+#theme::before {
+    content: ' ';
     position: absolute;
     width: 2.2rem;
     height: 2.2rem;
     border-radius: 50%;
     top: -3;
-    left:0;
+    left: 0;
     background-color: #fff;
-    transform:  sacale(1.2);box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: sacale(1.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: .2s;
 }
-#dark-light{
+
+#dark-light {
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -186,38 +190,44 @@ svg circle:nth-child(2) {
     height: 2.4rem;
     position: absolute;
 }
-#dark{
-background-image: url('./images/moom.svg');
-    
+
+#dark {
+    background-image: url('./images/moom.svg');
     position: relative;
     width: 2.2rem;
     height: 2.2rem;
     border-radius: 50%;
     top: 0.0rem;
-    left:0;
+    left: 0;
     /* background-color: #fff; */
-    transform:  sacale(1.2);box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: sacale(1.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: .2s;
 }
-#light{
+
+#light {
     background-image: url('./images/sun.svg');
     position: relative;
     width: 2.3rem;
     height: 2.3rem;
     border-radius: 50%;
     top: 0.0rem;
-    left:0;
+    left: 0;
     /* background-color: #fff; */
-    transform:  sacale(1.2);
+    transform: sacale(1.2);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: .2s;
 }
-#theme:checked::before{
-    left:4rem;
+
+#theme:checked::before {
+    left: 4rem;
 }
+
+
 /* #theme:checked{
      background-color:#000; 
 } */
+
 .content .bnt-new-theme .bnt-theme {
     margin: -2rem 5rem;
 }
@@ -356,15 +366,25 @@ background-image: url('./images/moom.svg');
     font-weight: 700;
 }
 
+
 /* dark/light */
-@media (prefers-color-scheme:dark){
-.dark{
-    background-color: #3b3b3b;
-    color:#f0ece2;
+
+@media (prefers-color-scheme:dark) {
+    .dark {
+        background-color: #3b3b3b;
+        color: #f0ece2;
+    }
 }
 
 
-}
+/* @media (prefers-color-scheme:ligth) {
+    .ligth {
+        background-color: #fff;
+        color: #3b3b3b;
+    }
+} */
+
+
 /* ///////////////////////////// */
 
 .done {
@@ -417,5 +437,4 @@ footer {
         display: flex;
         justify-content: center;
     }
-
 }

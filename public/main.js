@@ -65,9 +65,7 @@ function capturetypedvalues(obj, object) {
                         Showpercent();
                     } else {
                         //  Inserindo valores
-                        //  newactividad= actividad.slice();
-                        // newactividad.unshift({name:valuetyped, checked:""}); //  Inserindo no array actividad
-                        actividad.unshift({ name: valuetyped, checked: "" }); //  Inserindo no array actividad
+                        actividad.unshift(valuetyped); //  Inserindo no array actividad
                         document.title = `(${actividad.length}) list_activit`;
                     }
                 }
@@ -180,15 +178,22 @@ ul.addEventListener('click', event => {
     }
 
     if (event.target.id === 'check') {
-
-        li.classList.toggle("done");
-        var checks = event.target.parentNode
-        console.log(checks, checks.className)
-        if (checks.className === 'done') {
-            console.log('checked:', `${checks.className}`)
-        } else {
-            console.log('"checked:"', '""')
+        const currentthme = localStorage.getItem('done?')
+            // if (currentthme) {
+        if (currentthme === 'done') {
+            li.classList.add('done')
+                // check.checked = true;
         }
+        // }
+
+        if (event.target.checked) {
+            li.classList.add('done')
+            localStorage.setItem('done?', 'done')
+        } else {
+            li.classList.remove('done')
+            localStorage.setItem('done?', 'notdone')
+        }
+        // li.classList.toggle("done");
 
     }
     Showpercent(event);
@@ -237,20 +242,24 @@ close2.addEventListener('click', function() {
 
 // DARK e LIGTH
 const theme = document.getElementById('theme');
-let themo = JSON.parse(localStorage.getItem("themo"))
-theme.addEventListener('click', ev => {
-    document.body.classList.toggle('dark')
-    const clasbody = document.body.className;
-    console.log(clasbody)
-    if (clasbody === 'dark') {
-        themo.push(clasbody)
-    } else {
-        themo.push([])
+const currentTheme = localStorage.getItem('data-theme');
+if (currentTheme) {
+    document.body.classList.add(currentTheme);
+    if (currentTheme === 'dark') {
+        theme.checked = true;
     }
-    localStorage.setItem("themo", JSON.stringify(themo))
+}
+theme.addEventListener('change', ev => {
 
+    if (ev.target.checked) {
+        document.body.classList.add('dark');
+        localStorage.setItem('data-theme', 'dark')
+    } else {
+        document.body.classList.remove('dark')
+        localStorage.setItem('data-theme', '')
+    }
 })
 
-
 // salvar image do header 
+// atualização future
 // https://www.youtube.com/watch?v=De5np8phQxo&t=1251s
