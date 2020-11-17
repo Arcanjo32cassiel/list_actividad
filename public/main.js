@@ -1,7 +1,6 @@
 window.addEventListener('load', init);
 
 //////////////// variavéis globais/////////////
-// const actividad= []
 const list = document.getElementById('list');
 const button = document.getElementById('button');
 const check = document.getElementById('check');
@@ -10,16 +9,14 @@ const form = document.querySelector('form');
 const lis = document.querySelectorAll('li')
 const modaloverlay = document.querySelector('.modal-overlay ');
 const ul = document.createElement("ul");
-// var newactividad =[]
-const fototrash = [url = 'bin.svg']
 
 var IsEditing = true;
 var Posicao;
 
+const fototrash = [url = 'bin.svg']
 
 function init() {
     capturetypedvalues(Input, button);
-    // darkLigth();
     preventbehaviordefault(form);
     displayvector();
 
@@ -87,7 +84,7 @@ function displayvector() {
 
     //para cada posição do vetor, executar a função 
     actividad.map(item => {
-        var li = document.createElement("li");
+        const li = document.createElement("li");
         li.value = `${100/actividad.length}`;
         console.log(li.value)
         li.addEventListener('mouseover', function() {
@@ -154,7 +151,7 @@ function EditarItem(event) {
 
 ul.addEventListener('click', event => {
     var li = event.target.parentElement;
-
+    // console.log(li)
     // Realizar evento apenas quando o usário clicar no botão
     if (event.target.localName === 'img') {
 
@@ -177,24 +174,24 @@ ul.addEventListener('click', event => {
         Showpercent();
     }
 
-    if (event.target.id === 'check') {
-        const currentthme = localStorage.getItem('done?')
-            // if (currentthme) {
-        if (currentthme === 'done') {
-            li.classList.add('done')
-                // check.checked = true;
-        }
-        // }
 
+
+    // const currentthme = localStorage.getItem('done')
+    // const check = document.getElementById('check')
+    // if (currentthme) {
+    //     if (currentthme === 'done') {
+    //         li.classList.add(currentthme);
+    //         // check.checked = true
+    //     }
+    // }
+    if (event.target.id === 'check') {
         if (event.target.checked) {
             li.classList.add('done')
-            localStorage.setItem('done?', 'done')
+            localStorage.setItem('done', 'done')
         } else {
             li.classList.remove('done')
-            localStorage.setItem('done?', 'notdone')
+            localStorage.setItem('done', 'notdone')
         }
-        // li.classList.toggle("done");
-
     }
     Showpercent(event);
 });
@@ -211,11 +208,9 @@ function Showpercent() {
 
 
 }
-// Atualizar div sem carregar a página
-// https://www.youtube.com/watch?v=5fu4Y9z0lco
+//  carregar a página sem Atualizar div 
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/unload_event
 // https://desenvolvimentoparaweb.com/javascript/como-loading-de-javascript-funciona-domcontentloaded-e-onload/#content
-
 
 
 //////////////////////MODAL NEW ACTIVITY////////////////////////////////////////////////////////////
@@ -232,7 +227,7 @@ function modalnewactivity() {
 modalnewactivity();
 
 
-// Qunado clicar no x(close2) , chama uma função 
+// Quando clicar no x(close2) , chama uma função 
 // que remove o modal   de new activity
 const close2 = document.querySelector(".close2")
 
@@ -240,26 +235,30 @@ close2.addEventListener('click', function() {
     modaloverlay.classList.remove('active-modal')
 })
 
+
 // DARK e LIGTH
-const theme = document.getElementById('theme');
-const currentTheme = localStorage.getItem('data-theme');
-if (currentTheme) {
-    document.body.classList.add(currentTheme);
-    if (currentTheme === 'dark') {
-        theme.checked = true;
+function darklight() {
+    const theme = document.getElementById('theme');
+    const currentTheme = localStorage.getItem('data-theme');
+    if (currentTheme) {
+        if (currentTheme === 'dark') {
+            document.body.classList.add(currentTheme);
+            theme.checked = true;
+        }
     }
+    theme.addEventListener('change', ev => {
+
+        if (ev.target.checked) {
+            document.body.classList.add('dark');
+            localStorage.setItem('data-theme', 'dark')
+        } else {
+            document.body.classList.remove('dark')
+            localStorage.setItem('data-theme', '')
+        }
+    })
 }
-theme.addEventListener('change', ev => {
-
-    if (ev.target.checked) {
-        document.body.classList.add('dark');
-        localStorage.setItem('data-theme', 'dark')
-    } else {
-        document.body.classList.remove('dark')
-        localStorage.setItem('data-theme', '')
-    }
-})
-
+darklight();
 // salvar image do header 
-// atualização future
+// update future
 // https://www.youtube.com/watch?v=De5np8phQxo&t=1251s
+// https://www.youtube.com/watch?v=cZvWDTqTGKg
