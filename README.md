@@ -20,4 +20,4 @@ $ git clone <https://github.com/Arcanjo32cassiel/list_actividad.git>
   $ npm start
 ```
 ## Image
-<div align="center"></div>
+<div align="center"><img alt="Happy" src=".github/list.1.gif" width="100%"></div>
