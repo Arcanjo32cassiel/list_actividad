@@ -72,6 +72,8 @@ function capturetypedvalues(obj, object) {
                 displayvector(); //vai atualizar a página e exibir vetor com novo valor
 
                 modaloverlay.classList.remove('active-modal'); //remove o modal
+                // function para evitar refresh
+                preventbehaviordefault(form);
             }
         });
     });
@@ -208,9 +210,9 @@ function Showpercent() {
 
 
 }
-//  carregar a página sem Atualizar div 
+// Quando executar uma função não alterar  o estado de uma list
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/unload_event
-// https://desenvolvimentoparaweb.com/javascript/como-loading-de-javascript-funciona-domcontentloaded-e-onload/#content
+
 
 
 //////////////////////MODAL NEW ACTIVITY////////////////////////////////////////////////////////////
